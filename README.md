@@ -1,6 +1,6 @@
 Dashboard Očkovania HPV
 
-Tento dashboard poskytuje interaktívny prehľad štatistík očkovania proti HPV (ľudský papilomavírus) na Slovensku. Je navrhnutý na vizualizáciu dát z rôznych perspektív a zdôrazňuje regionálne rozdiely, trendy v čase a miery očkovania.
+Tento dashboard poskytuje interaktívny prehľad štatistík očkovania proti HPV (ľudský papilomavírus) na Slovensku v roku 2021. Je navrhnutý na vizualizáciu dát z rôznych perspektív a zdôrazňuje regionálne rozdiely, trendy v čase a miery očkovania.
 Funkcionality dashboardu:
 
     Zobrazenie hlavných metrík:
