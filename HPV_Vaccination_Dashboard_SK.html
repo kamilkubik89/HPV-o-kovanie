@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Očkovania HPV</title>
+    <style>
+        /* General Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #003366;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Card Container Styling */
+        .card-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        /* Card Styling */
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            width: 80%;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Dashboard Očkovania HPV</h1>
+        <p>Prehľad štatistík očkovania proti HPV podľa regiónov, okresov a v čase</p>
+    </header>
+
+    <main>
+        <!-- Card Section for Key Metrics -->
+        <section class="card-container">
+            <div class="card">
+                <h3>Celkový počet očkovaných</h3>
+                <p id="totalVaccinated">Načítavam...</p>
+            </div>
+            <div class="card">
+                <h3>Miera úplne zaočkovaných</h3>
+                <p id="fullVaccinationRate">Načítavam...</p>
+            </div>
+            <div class="card">
+                <h3>Miera čiastočne zaočkovaných</h3>
+                <p id="partialVaccinationRate">Načítavam...</p>
+            </div>
+        </section>
+
+        <!-- Monthly Vaccination Trend Chart -->
+        <section class="chart-container">
+            <canvas id="monthlyTrendChart"></canvas>
+        </section>
+
+        <!-- Regional Vaccination Comparison Chart -->
+        <section class="chart-container">
+            <canvas id="regionalComparisonChart"></canvas>
+        </section>
+
+    </main>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Dummy Data (to be replaced with real calculations)
+        const totalVaccinated = 50000;
+        const fullVaccinationRate = 60;  // Percentage
+        const partialVaccinationRate = 25;  // Percentage
+
+        // Display data in cards
+        document.getElementById("totalVaccinated").innerText = totalVaccinated.toLocaleString();
+        document.getElementById("fullVaccinationRate").innerText = fullVaccinationRate + "%";
+        document.getElementById("partialVaccinationRate").innerText = partialVaccinationRate + "%";
+
+        // Monthly Trend Chart (dummy data)
+        const monthlyTrendData = {
+            labels: ["Jan", "Feb", "Mar", "Apr", "Máj", "Jún", "Júl", "Aug", "Sep", "Okt", "Nov", "Dec"],
+            datasets: [
+                {
+                    label: "Gardasil 9v",
+                    data: [440, 503, 753, 707, 741, 629, 850, 936, 1020, 1100, 1200, 1340],
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderWidth: 1
+                },
+                {
+                    label: "Cervarix 2v",
+                    data: [788, 856, 973, 1029, 987, 950, 960, 995, 1010, 1025, 1040, 1090],
+                    borderColor: "rgba(255, 159, 64, 1)",
+                    backgroundColor: "rgba(255, 159, 64, 0.2)",
+                    borderWidth: 1
+                }
+            ]
+        };
+
+        const monthlyTrendConfig = {
+            type: "line",
+            data: monthlyTrendData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: "top" },
+                    title: { display: true, text: "Mesačný trend očkovania v roku 2021" }
+                }
+            }
+        };
+
+        const monthlyTrendChart = new Chart(
+            document.getElementById("monthlyTrendChart"),
+            monthlyTrendConfig
+        );
+
+        // Regional Vaccination Comparison Chart (dummy data)
+        const regionalComparisonData = {
+            labels: ["Bratislava", "Košice", "Prešov", "Žilina", "Nitra", "Trnava", "Trenčín", "Banská Bystrica"],
+            datasets: [
+                {
+                    label: "% Úplne zaočkovaní",
+                    data: [40, 60, 35, 45, 50, 55, 65, 70],
+                    backgroundColor: "rgba(54, 162, 235, 0.6)",
+                    borderWidth: 1
+                },
+                {
+                    label: "% Čiastočne zaočkovaní",
+                    data: [20, 25, 15, 20, 30, 28, 35, 40],
+                    backgroundColor: "rgba(255, 206, 86, 0.6)",
+                    borderWidth: 1
+                }
+            ]
+        };
+
+        const regionalComparisonConfig = {
+            type: "bar",
+            data: regionalComparisonData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: "top" },
+                    title: { display: true, text: "Miera očkovania podľa regiónov" }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        };
+
+        const regionalComparisonChart = new Chart(
+            document.getElementById("regionalComparisonChart"),
+            regionalComparisonConfig
+        );
+    </script>
+</body>
+</html>
